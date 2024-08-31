@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rapport de Ventes - {{ period }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .report-container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .report-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .report-header h1 {
+            margin: 0;
+            color: #28a745;
+        }
+        .report-details {
+            margin-bottom: 20px;
+        }
+        .report-details th, .report-details td {
+            padding: 8px 10px;
+            text-align: left;
+        }
+        .report-details th {
+            background-color: #28a745;
+            color: #fff;
+        }
+        .report-details td {
+            border-bottom: 1px solid #ddd;
+        }
+        .chart-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <div class="report-header">
+            <h1>Rapport de Ventes</h1>
+            <p>Période : {{ period }}</p>
+        </div>
+        
+        <h2>Détails des Ventes</h2>
+        <table class="report-details" width="100%">
+            <tr>
+                <th>Produit</th>
+                <th>Quantité Vendue</th>
+                <th>Prix Unitaire</th>
+                <th>Chiffre d'Affaires</th>
+            </tr>
+            {% for sale in sales %}
+            <tr>
+                <td>{{ sale.productName }}</td>
+                <td>{{ sale.quantity }}</td>
+                <td>{{ sale.unitPrice }} €</td>
+                <td>{{ sale.revenue }} €</td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <div class="chart-container">
+            <h2>Graphique des Ventes</h2>
+            <img src="{{ chartUrl }}" alt="Graphique des ventes">
+        </div>
+        
+        <h2>Résumé des Ventes</h2>
+        <p>Total des ventes : {{ totalSales }} €</p>
+        <p>Total des produits vendus : {{ totalProducts }}</p>
+    </div>
+</body>
+</html>

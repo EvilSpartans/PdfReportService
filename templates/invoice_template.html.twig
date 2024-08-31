@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Facture {{ invoiceNumber }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        .invoice-container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .invoice-header {
+            text-align: center;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .invoice-header h1 {
+            margin: 0;
+            color: #007bff;
+        }
+        .invoice-details {
+            margin-bottom: 20px;
+        }
+        .invoice-details th, .invoice-details td {
+            padding: 5px 10px;
+            text-align: left;
+        }
+        .invoice-details th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .invoice-details td {
+            border-bottom: 1px solid #ddd;
+        }
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <h1>Facture</h1>
+            <p>Facture N°{{ invoiceNumber }}</p>
+        </div>
+        <div class="invoice-details">
+            <table width="100%">
+                <tr>
+                    <th>Date</th>
+                    <td>{{ date }}</td>
+                </tr>
+                <tr>
+                    <th>Client</th>
+                    <td>{{ clientName }}</td>
+                </tr>
+            </table>
+        </div>
+        <h2>Détails de la commande</h2>
+        <table width="100%">
+            <tr>
+                <th>Description</th>
+                <th>Prix</th>
+            </tr>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }} €</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <p class="total">Total : {{ total }} €</p>
+    </div>
+</body>
+</html>

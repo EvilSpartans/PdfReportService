@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Bulletin de Paie - {{ employeeName }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .payslip-container {
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .payslip-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .payslip-header h1 {
+            margin: 0;
+            color: #007bff;
+        }
+        .payslip-details, .payslip-salary, .payslip-taxes {
+            margin-bottom: 20px;
+        }
+        .payslip-details th, .payslip-details td,
+        .payslip-salary th, .payslip-salary td,
+        .payslip-taxes th, .payslip-taxes td {
+            padding: 8px 10px;
+            text-align: left;
+        }
+        .payslip-details th, .payslip-salary th, .payslip-taxes th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .payslip-details td, .payslip-salary td, .payslip-taxes td {
+            border-bottom: 1px solid #ddd;
+        }
+        .total-net {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="payslip-container">
+        <div class="payslip-header">
+            <h1>Bulletin de Paie</h1>
+            <p>{{ employeeName }} - {{ payPeriod }}</p>
+        </div>
+        <div class="payslip-details">
+            <table width="100%">
+                <tr>
+                    <th>Employeur</th>
+                    <td>{{ employerName }}</td>
+                </tr>
+                <tr>
+                    <th>Date de Paiement</th>
+                    <td>{{ paymentDate }}</td>
+                </tr>
+            </table>
+        </div>
+        <h2>Détails du Salaire</h2>
+        <div class="payslip-salary">
+            <table width="100%">
+                <tr>
+                    <th>Libellé</th>
+                    <th>Montant</th>
+                </tr>
+                <tr>
+                    <td>Salaire de base</td>
+                    <td>{{ baseSalary }} €</td>
+                </tr>
+                <tr>
+                    <td>Prime</td>
+                    <td>{{ bonus }} €</td>
+                </tr>
+            </table>
+        </div>
+        <h2>Taxes et Déductions</h2>
+        <div class="payslip-taxes">
+            <table width="100%">
+                <tr>
+                    <th>Libellé</th>
+                    <th>Montant</th>
+                </tr>
+                <tr>
+                    <td>Sécurité sociale</td>
+                    <td>{{ socialSecurity }} €</td>
+                </tr>
+                <tr>
+                    <td>Impôts</td>
+                    <td>{{ taxes }} €</td>
+                </tr>
+            </table>
+        </div>
+        <p class="total-net">Salaire net à payer : {{ netSalary }} €</p>
+    </div>
+</body>
+</html>
